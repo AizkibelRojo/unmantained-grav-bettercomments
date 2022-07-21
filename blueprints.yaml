@@ -1,0 +1,33 @@
+name: Better comments
+type: plugin
+slug: bettercomments
+version: 1.0.0
+description: Commenting functionality to your site whit management, answers from admin panel
+icon: comment
+author:
+  name: Aizkibel Rojo
+  email: aizkibelrojo@gmail.com
+  url: https://github.com/AizkibelRojo
+homepage: https://github.com/AizkibelRojo/grav-bettercomments
+keywords: comments, plugin, grav cms
+bugs: https://github.com/AizkibelRojo/grav-bettercomments/issues
+readme: https://github.com/AizkibelRojo/grav-bettercomments/
+license: GNU General Public License v2.0
+
+dependencies:
+  - form
+  - email
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool

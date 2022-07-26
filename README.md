@@ -4,7 +4,7 @@ The **Better comments Plugin** for [Grav](http://github.com/getgrav/grav) adds t
 
 # Installation
 
-Clone from GitHub and put in the `user/plugins/comments` folder.
+Clone from GitHub and put in the `user/plugins/bettercomments` folder.
 
 # Usage
 

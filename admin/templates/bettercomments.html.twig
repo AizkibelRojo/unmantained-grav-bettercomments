@@ -1,0 +1,151 @@
+{% extends 'partials/base.html.twig' %}
+
+{% if admin.route %}
+	{% set context = admin.page(true) %}
+{% endif %}
+
+{% block titlebar %}
+	<h1>
+		<i class="fa fa-fw fa-file-text-o"></i>
+		{{ "PLUGIN_COMMENTS.COMMENTS"|tu }}</h1>
+{% endblock %}
+
+{% do assets.addJs('plugin://bettercomments/admin/assets/bettercomments.js', { 'group': 'bottom', 'loading': 'defer' }) %}
+{% do assets.addCss('plugin://bettercomments/admin/assets/bettercomments.css') %}
+
+{% block content %}
+	<h1>{{ "PLUGIN_COMMENTS.COMMENTS_LAST_7"|tu }}</h1>
+
+	<div class="admin-block">
+		<table>
+			<tbody class="js__comments-container">
+				<tr class="h">
+					<th class="status">{{ "PLUGIN_COMMENTS.STATUS"|tu }}</th>
+					<th class="author">{{ "PLUGIN_COMMENTS.AUTHOR"|tu }}</th>
+					<th class="email">{{ "PLUGIN_COMMENTS.EMAIL_LABEL"|tu }}</th>
+					<th class="comment">{{ "PLUGIN_COMMENTS.MESSAGE_LABEL"|tu }}</th>
+					<th class="details">{{ "PLUGIN_COMMENTS.DETAILS"|tu }}</th>
+				</tr>
+				{% for comment in grav.twig.comments.comments %}
+					{% if comment.approved != '2' %}
+						<tr class="individual_comment" id="comment-{{ comment.date }}-line">
+							<td class="status" data-file="{{comment.filePath}}" data-file-name="{{comment.fileName}}" data-id="{{comment.timestamp}}" data-title="{{comment.pageTitle}}" id="comment-{{ comment.date }}">
+								{% if comment.approved == '1' %}
+									{{ "PLUGIN_COMMENTS.VISIBLE"|tu }}
+									{% if comment.answer != '0' %}
+										-
+										{{ "PLUGIN_COMMENTS.STATUS_ANSWER"|tu }}
+									{% else %}
+										-
+										{{ "PLUGIN_COMMENTS.MESSAGE_LABEL"|tu }}
+									{% endif %}
+									<br/>
+									{% if comment.answer == '0' %}
+										<span class="answer-comment">{{ "PLUGIN_COMMENTS.ANSWER"|tu }}</span>
+										|
+									{% endif %}
+									<span class="decline-comment">{{ "PLUGIN_COMMENTS.DECLINE"|tu }}</span>
+									|
+									<span class="delete-comment">{{ "PLUGIN_COMMENTS.DELETE"|tu }}</span>
+								{% else %}
+									{{ "PLUGIN_COMMENTS.NOT_VISIBLE"|tu }}
+									{% if comment.answer != '0' %}
+										-
+										{{ "PLUGIN_COMMENTS.STATUS_ANSWER"|tu }}
+									{% else %}
+										-
+										{{ "PLUGIN_COMMENTS.MESSAGE_LABEL"|tu }}
+									{% endif %}
+									<br/>
+									<span class="approve-comment">{{ "PLUGIN_COMMENTS.APPROVE"|tu }}</span>
+									|
+									<span class="delete-comment">{{ "PLUGIN_COMMENTS.DELETE"|tu }}</span>
+								{% endif %}
+							</td>
+							<td class="author">{{comment.author}}</td>
+							<td class="email">{{comment.email}}</td>
+							<td class="comment">{{comment.text}}</td>
+							<td class="details">
+								<strong>{{ "PLUGIN_COMMENTS.PAGE"|tu }}</strong>:
+								{{comment.pageTitle | raw }}<br>
+								<strong>{{ "PLUGIN_COMMENTS.DATE"|tu }}</strong>:
+								{{comment.date | date("d/m/Y H:i")}}
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="admin-comment" id="admin-comment">
+			<form name="{{ grav.config.plugins.bettercomments.form.name }}" action="{{ grav.config.plugins.bettercomments.form.action ? base_url ~ grav.config.plugins.bettercomments.form.action : page.url }}" method="{{ grav.config.plugins.bettercomments.form.method|upper|default('POST') }}" id="comments-form">
+				<div class="answer">
+					<strong>{{ "PLUGIN_COMMENTS.ANSWERING_TO"|tu }}</strong>
+					<span id="comment-to-answer"></span>
+				</div>
+				<div class="form-field grid  ">
+					<div class="form-label block size-1-3">
+						<label>
+							{{ "PLUGIN_COMMENTS.MESSAGE_LABEL"|tu }}
+
+							<span class="required">*</span>
+						</label>
+					</div>
+					<div class="form-data block size-2-3" data-grav-field="textarea" data-grav-disabled="" data-grav-default="null">
+						<div class="form-textarea-wrapper  ">
+							<textarea name="data[text]" class="  " placeholder="{{ "PLUGIN_COMMENTS.MESSAGE_PLACEHOLDER"|tu }}"></textarea>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="data[name]" value="{{grav.user.fullname}}">
+				<input type="hidden" name="data[email]" value="{{grav.user.email}}">
+				<input type="hidden" name="data[title]" id="title-comment-input" value="0">
+				<input type="hidden" name="data[answer]" id="answer-comment-input" value="0">
+				<input type="hidden" name="data[path]" id="file-comment-input" value="0">
+				<input type="hidden" name="action" value="save-admin-comment">
+
+				{{ nonce_field('form', 'form-nonce')|raw }}
+				<div class="buttons">
+					{% for button in grav.config.plugins.bettercomments.form.buttons %}
+						<button class="button" type="{{ button.type|default('submit') }}">{{ button.value|t|default('Submit') }}</button>
+					{% endfor %}
+					<button class="button comment-response-close">{{ "PLUGIN_COMMENTS.CLOSE"|tu }}</button>
+				</div>
+			</form>
+		</div>
+		{% if grav.twig.comments.totalRetrieved < grav.twig.comments.totalAvailable %}
+			<button type="button" class="button center js__load-more">
+				{{ "PLUGIN_COMMENTS.LOAD_MORE"|tu }}
+			</button>
+		{% endif %}
+
+		<p class="center">{{ "PLUGIN_COMMENTS.SHOWING"|tu }}
+			<span class="totalRetrieved">{{grav.twig.comments.totalRetrieved}}</span>
+			{{ "PLUGIN_COMMENTS.COMMENTS_OF"|tu }}
+			<span class="totalAvailable">{{grav.twig.comments.totalAvailable}}</span>
+		</p>
+	</div>
+
+	{% if grav.twig.pages %}
+		<h1>{{ "PLUGIN_COMMENTS.RECENTLY_COMMENTS_PAGE"|tu }}</h1>
+
+		<div class="admin-block">
+			<table>
+				<tbody class="js__pages-container">
+					<tr class="h">
+						<th class="page">{{ "PLUGIN_COMMENTS.DATE"|tu }}</th>
+						<th class="number-of-comments">{{ "PLUGIN_COMMENTS.N_OF_COMMENTS"|tu }}</th>
+						<th class="last-comment-date">{{ "PLUGIN_COMMENTS.LAST_COMMENTED_ON"|tu }}</th>
+					</tr>
+					{% for page in grav.twig.pages %}
+						<tr>
+							<td class="page">{{page.title | raw}}</td>
+							<td class="number-of-comments">{{page.commentsCount}}</td>
+							<td class="last-comment-date">{{page.lastCommentDate}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+
+{% endblock %}

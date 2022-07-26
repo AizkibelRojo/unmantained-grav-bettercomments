@@ -1,0 +1,43 @@
+.comments-container ol li {
+    margin-bottom: 25px;
+}
+
+.comments-container .comment-author img {
+    margin: 0;
+    display: inline-block;
+}
+
+.comments-container .comment-author-name {
+    font-style: italic;
+}
+
+.comments-container .comment-date {
+    color: var(--finanbest-main-blue);
+    font-size: 0.95rem;
+}
+
+.comments-container .comment-children {
+    list-style: none;
+}
+
+.comments-form-container {
+    position: relative;
+}
+
+.comments-form-container .alert {
+    background-color: #FF8A80;
+    border: 1px solid #f51223;
+    color: #fff;
+    display: none;
+    border-radius: 15px;
+}
+
+.comments-form-container .success {
+    padding: 0.938rem;
+    margin-bottom: 1.5rem;
+    display: none;
+    background-color: #66c228;
+    color: #fff;
+    border-radius: 15px;
+    text-align: center;
+}

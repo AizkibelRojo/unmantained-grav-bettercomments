@@ -14,7 +14,12 @@ $(document).on('submit', '#comments-form', function (event) {
             //append new comment
             $('#comment-errors').hide()
             $('#comments-form')[0].reset()
-            $('#comment-success').fadeIn()
+            $('#comment-success').fadeIn().promise().done(function () {
+                setTimeout(function () {
+                    $("#comment-success").fadeOut()
+                }, 2500)
+            })
+            grecaptcha.reset()
         }
         else {
             //show errors

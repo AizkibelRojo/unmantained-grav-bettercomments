@@ -61,7 +61,7 @@ class BetterCommentsPlugin extends Plugin
             $action = filter_input(INPUT_POST, 'action', FILTER_UNSAFE_RAW);
             switch ($action) {
                 case 'save-comment':
-                default:
+                case 'user-comment':
                     $result = $this->commentSave(true);
                     echo json_encode([
                         'status' => $result[0],
@@ -543,12 +543,18 @@ class BetterCommentsPlugin extends Plugin
             'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
             'onAdminMenu' => ['onAdminMenu', 0],
             'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
-            'onPageInitialized' => ['onPageInitialized', 0],
         ]);
 
         if (strpos($uri->path(), $this->config->get('plugins.admin.route') . '/' . $this->route) === false) {
             return;
         }
+
+        $this->enable([
+            'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
+            'onAdminMenu' => ['onAdminMenu', 0],
+            'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
+            'onPageInitialized' => ['onPageInitialized', 0],
+        ]);
 
         $page = $this->grav['uri']->param('page');
         $comments = $this->getLastComments($page);

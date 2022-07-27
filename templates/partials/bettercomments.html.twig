@@ -73,6 +73,7 @@
 			{% endfor %}
 			{% include "forms/fields/formname/formname.html.twig" %}
 			<input type="hidden" name="data[answer]" id="answer-comment-input" value="0">
+			<input type="hidden" name="action" value="user-comment">
 			{{ nonce_field('form', 'form-nonce')|raw }}
 			<div class="buttons">
 				{% for button in grav.config.plugins.bettercomments.form.buttons %}

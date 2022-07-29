@@ -1,3 +1,7 @@
+# v1.0.3
+## 07/29/2025
+- Fix issue
+- Added conditional load on twig for plugin
 # v1.0.2
 ## 07/27/2025
 - Hotfix admin page

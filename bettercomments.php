@@ -19,8 +19,7 @@ use Grav\Common\File\CompiledYamlFile;
 class BetterCommentsPlugin extends Plugin
 {
     protected $route = 'bettercomments';
-    ///protected $enable = false;
-    protected $enable = true;
+    protected $enable = false;
     protected $comments_cache_id;
 
     /**

@@ -8,7 +8,7 @@ Clone from GitHub and put in the `user/plugins/bettercomments` folder.
 
 # Usage
 
-Add `{% include 'partials/bettercomments.html.twig' with {'page': page} %}` to the template file where you want to add comments.
+Add `{% if config.plugins.bettercomments.enabled %} {% include 'partials/bettercomments.html.twig' %} {% endif %}` to the template file where you want to add comments.
 
 For example, in Antimatter, in `templates/item.html.twig`:
 
@@ -28,8 +28,9 @@ For example, in Antimatter, in `templates/item.html.twig`:
                 {% include 'partials/sidebar.html.twig' with {'blog':page.parent} %}
             </div>
         </div>
-
-        {% include 'partials/bettercomments.html.twig' %}
+        {% if config.plugins.bettercomments.enabled %}
+            {% include 'partials/bettercomments.html.twig' %}
+        {% endif %}
     {% endblock %}
 
 {% endembed %}

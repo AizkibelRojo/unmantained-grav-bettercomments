@@ -516,7 +516,6 @@ class BetterCommentsPlugin extends Plugin
 
         if ($this->enable) {
             $this->enable([
-                'onFormProcessed' => ['onFormProcessed', 0],
                 'onFormPageHeaderProcessed' => ['onFormPageHeaderProcessed', 0],
                 'onPageInitialized' => ['onPageInitialized', 10],
                 'onTwigSiteVariables' => ['onTwigSiteVariables', 0]

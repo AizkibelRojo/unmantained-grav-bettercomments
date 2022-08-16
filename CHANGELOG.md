@@ -1,7 +1,11 @@
-# v1.0.3
+# v1.0.4
+## 08/16/2022
+- Fix issue OnFormProcessed
+
 ## 07/29/2022
 - Fix issue
 - Added conditional load on twig for plugin
+
 # v1.0.2
 ## 07/27/2022
 - Hotfix admin page

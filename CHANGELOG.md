@@ -1,3 +1,7 @@
+# v1.0.5
+## 08/23/2022
+- Code revision to work properly
+
 # v1.0.4
 ## 08/16/2022
 - Fix issue OnFormProcessed

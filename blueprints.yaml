@@ -1,7 +1,7 @@
 name: Better comments
 type: plugin
 slug: bettercomments
-version: 1.0.4
+version: 1.0.5
 description: Commenting functionality to your site whit management, answers from admin panel
 icon: comment
 author:

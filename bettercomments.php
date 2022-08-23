@@ -537,22 +537,21 @@ class BetterCommentsPlugin extends Plugin
         /** @var Uri $uri */
         $uri = $this->grav['uri'];
 
-        $this->enable([
-            'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
-            'onAdminMenu' => ['onAdminMenu', 0],
-            'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
-        ]);
-
         if (strpos($uri->path(), $this->config->get('plugins.admin.route') . '/' . $this->route) === false) {
-            return;
+            $this->enable([
+                'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
+                'onAdminMenu' => ['onAdminMenu', 0],
+                'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
+                'onPageInitialized' => ['onPageInitialized', 0],
+            ]);
         }
-
-        $this->enable([
-            'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
-            'onAdminMenu' => ['onAdminMenu', 0],
-            'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
-            'onPageInitialized' => ['onPageInitialized', 0],
-        ]);
+        else{
+            $this->enable([
+                'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
+                'onAdminMenu' => ['onAdminMenu', 0],
+                'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
+            ]);
+        }
 
         $page = $this->grav['uri']->param('page');
         $comments = $this->getLastComments($page);

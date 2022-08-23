@@ -2,10 +2,12 @@ $(document).on('submit', '#comments-form', function (event) {
     event.preventDefault()
 
     let data = $(this).serialize()
-
-    if (grecaptcha.getResponse() == "") {
-        data = { action: "recaptcha-error" }
+    if ($('#g-recaptcha-bettercomments').length > 0) {
+        if (grecaptcha.getResponse() == "") {
+            data = { action: "recaptcha-error" }
+        }
     }
+
     const url = $(this).attr("action"),
         posting = $.post(url, data, null, 'json')
 
@@ -19,7 +21,9 @@ $(document).on('submit', '#comments-form', function (event) {
                     $("#comment-success").fadeOut()
                 }, 2500)
             })
-            grecaptcha.reset()
+            if ($('#g-recaptcha-bettercomments').length > 0) {
+                grecaptcha.reset()
+            }
         }
         else {
             //show errors

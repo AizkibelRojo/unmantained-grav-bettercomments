@@ -1,3 +1,7 @@
+# v1.0.6
+## 10/03/2022
+-  Admin pages section content not seeing [Bug fix]
+
 # v1.0.5
 ## 08/23/2022
 - Code revision to work properly

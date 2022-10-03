@@ -2,7 +2,7 @@ $(document).on('click tap', '.individual_comment .approve-comment, .individual_c
     const action = $(this).attr('class'),
         file = $(this).parent('td').data('file'),
         commenttId = $(this).parent('td').data('id'),
-        url = '/admin',
+        url = '/admin/bettercomments',
         posting = $.post(url, { action: action, yaml: file, id: commenttId }, null, 'json')
 
     let blockChange = '',

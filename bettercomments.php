@@ -536,8 +536,7 @@ class BetterCommentsPlugin extends Plugin
     {
         /** @var Uri $uri */
         $uri = $this->grav['uri'];
-
-        if (strpos($uri->path(), $this->config->get('plugins.admin.route') . '/' . $this->route) === false) {
+        if (strpos($uri->path(), $this->config->get('plugins.admin.route') . '/' . $this->route) !== false) {
             $this->enable([
                 'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
                 'onAdminMenu' => ['onAdminMenu', 0],

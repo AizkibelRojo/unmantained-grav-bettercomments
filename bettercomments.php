@@ -647,7 +647,7 @@ class BetterCommentsPlugin extends Plugin
             if (count($data['comments']) > 0) {
                 //Filter "Deleted" comments
                 $data['comments'] = array_filter($data['comments'], function ($k) {
-                    return $k['approved'] == '1' || $k['approved'] == '0';
+                    return (isset($k['approved']) && $k['approved'] == '1') || (isset($k['approved']) && $k['approved'] == '0');
                 });
                 if (count($data['comments']) > 0) {
                     $comments = array_merge($comments, $data['comments']);
@@ -725,7 +725,7 @@ class BetterCommentsPlugin extends Plugin
             $file_comments = [];
             if (count($file->data['comments']) > 0) {
                 foreach ($file->data['comments'] as $comment) {
-                    if ((int)$comment['approved'] !== 2) {
+                    if (isset($comment['approved']) && (int)$comment['approved'] !== 2) {
                         array_push($file_comments, $comment);
                     }
                 }

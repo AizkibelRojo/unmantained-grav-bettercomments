@@ -136,15 +136,48 @@ fr:
     NAME: Nom :
     EMAIL: E-mail :
     WRITTEN_ON: Écrit le
-    NAME_LABEL: "Nom"
-    NAME_PLACEHOLDER: "Indiquez votre nom"
-    EMAIL_LABEL: "E-mail"
-    EMAIL_PLACEHOLDER: "Indiquez votre adresse e-mail"
-    MESSAGE_LABEL: "Commentaire"
-    MESSAGE_PLACEHOLDER: "Rédigez votre commentaire"
-    SUBMIT_COMMENT_BUTTON_TEXT: "Envoyer"
-    EMAIL_NEW_COMMENT_SUBJECT: "[Nouveau commentaire] de {{ form.value.name|e }}"
-    THANK_YOU_MESSAGE: "Merci d'avoir rédigé votre commentaire !"
+    NAME_LABEL: Nom
+    NAME_PLACEHOLDER: Indiquez votre nom
+    EMAIL_LABEL: E-mail
+    EMAIL_PLACEHOLDER: Indiquez votre adresse e-mail
+    MESSAGE_LABEL: Commentaire
+    MESSAGE_PLACEHOLDER: Rédigez votre commentaire
+    SUBMIT_COMMENT_BUTTON_TEXT: Envoyer
+    EMAIL_NEW_COMMENT_SUBJECT: [Nouveau commentaire] de {{ form.value.name|e }}
+    THANK_YOU_MESSAGE: Merci d'avoir rédigé votre commentaire !
+    STATUS: Statut
+    AUTHOR: Auteur
+    DETAILS: Détails
+    VISIBLE: Visible
+    NOT_VISIBLE: Non visible
+    APPROVE: Approuver
+    DELETE: Supprimer
+    DECLINE: Rejeter
+    PAGE: Page
+    DATE: Date
+    ADMIN_FORBIDDEN: Accès interdit
+    COMMENT_ADMIN_ACTION_ERROR: Requête malformée - paramètre(s) manquant(s)
+    DELETED_MSG: Commentaire supprimé
+    COMMENT_APPROVED: Commentaire approuvé
+    COMMENT_REJECTED: Commentaire rejeté
+    SAYS: dit
+    ERROR_NAME: Renseignez le champ "nom"
+    ERROR_MAIL: Renseignez le champ "e-mail"
+    ERROR_TEXT: Renseignez le champ "commentaire"
+    ERROR_RECAPTACH: Complétez le recaptcha
+    ERROR_MISSING_DATA: Données manquantes
+    ERROR_SUBMISSION: Il y a eu un problème lors de l'envoi, veuillez réessayer.
+    ANSWER: Répondre
+    CLOSE: Fermer
+    ANSWERING_TO: Répondre à:
+    STATUS_ANSWER: Réponse
+    COMMENTS_LAST_7: Commentaires au cours des 7 derniers jours
+    LOAD_MORE: Charger plus
+    SHOWING: Afficher
+    COMMENTS_OF: commentaires sur
+    RECENTLY_COMMENTS_PAGE: Pages récemment commentées
+    N_OF_COMMENTS: Nombre de commentaires
+    LAST_COMMENTED_ON: Dernier commentaire
 
 hr:
   PLUGIN_COMMENTS:

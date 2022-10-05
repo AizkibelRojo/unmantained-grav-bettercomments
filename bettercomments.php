@@ -354,7 +354,7 @@ class BetterCommentsPlugin extends Plugin
         $comment_data = [];
         $texts = [];
 
-        if ($this->grav['user']->authorize('admin.super') && $this->grav['uri']->path() === '/admin') {
+        if ($this->grav['user']->authorize('admin.super') && $this->grav['uri']->path() === '/admin/bettercomments') {
             //Admin return
             $comment_data = [$input['name'], $input['email'], $input['text'], $input['title'], $time];
             $texts = [$language->translate('PLUGIN_COMMENTS.VISIBLE'), $language->translate('PLUGIN_COMMENTS.STATUS_ANSWER'), $language->translate('PLUGIN_COMMENTS.DECLINE'), $language->translate('PLUGIN_COMMENTS.DELETE'), $language->translate('PLUGIN_COMMENTS.PAGE'), $language->translate('PLUGIN_COMMENTS.DATE')];

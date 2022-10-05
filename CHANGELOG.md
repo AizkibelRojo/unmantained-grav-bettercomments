@@ -2,7 +2,9 @@
 ## 10/05/2022
 - array_filter bugfix
 - French traslation imporvements
+- Admin response behaviour fixed
 - This release is thanks to by spin0us, thanks for time spend on plugin and code fix (https://github.com/spin0us)
+
 # v1.0.7
 ## 10/05/2022
 - array_filter error solved, if is 0 not array filter done

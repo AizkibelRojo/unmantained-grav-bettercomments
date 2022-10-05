@@ -693,7 +693,7 @@ class BetterCommentsPlugin extends Plugin
         $comments = [];
         $comments_answer = array();
 
-        if ($all_comments !== null) {
+        if (count($all_comments) > 0) {
             foreach ($all_comments as $comment) {
                 // if ((int)$comment['approved'] !== 2) {
                 //     array_push($comments, $comment);

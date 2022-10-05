@@ -74,7 +74,7 @@ $(document).on('click tap', '.comment-response-close', function (event) {
 $(document).on('submit', '#comments-form', function (event) {
     event.preventDefault()
     const data = $(this).serialize(),
-        url = '/admin',
+        url = '/admin/bettercomments',
         posting = $.post(url, data, null, 'json')
 
     posting.done(function (response) {

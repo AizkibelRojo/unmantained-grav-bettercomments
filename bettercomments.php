@@ -354,7 +354,7 @@ class BetterCommentsPlugin extends Plugin
         $comment_data = [];
         $texts = [];
 
-        if ($this->grav['user']->authorize('admin.super') && $this->grav['uri']->path() === '/admin') {
+        if ($this->grav['user']->authorize('admin.super') && $this->grav['uri']->path() === '/admin/bettercomments') {
             //Admin return
             $comment_data = [$input['name'], $input['email'], $input['text'], $input['title'], $time];
             $texts = [$language->translate('PLUGIN_COMMENTS.VISIBLE'), $language->translate('PLUGIN_COMMENTS.STATUS_ANSWER'), $language->translate('PLUGIN_COMMENTS.DECLINE'), $language->translate('PLUGIN_COMMENTS.DELETE'), $language->translate('PLUGIN_COMMENTS.PAGE'), $language->translate('PLUGIN_COMMENTS.DATE')];
@@ -647,7 +647,7 @@ class BetterCommentsPlugin extends Plugin
             if (count($data['comments']) > 0) {
                 //Filter "Deleted" comments
                 $data['comments'] = array_filter($data['comments'], function ($k) {
-                    return $k['approved'] == '1' || $k['approved'] == '0';
+                    return (isset($k['approved']) && $k['approved'] == '1') || (isset($k['approved']) && $k['approved'] == '0');
                 });
                 if (count($data['comments']) > 0) {
                     $comments = array_merge($comments, $data['comments']);
@@ -693,15 +693,15 @@ class BetterCommentsPlugin extends Plugin
         $comments = [];
         $comments_answer = array();
 
-        if ($all_comments !== null) {
+        if (count($all_comments) > 0) {
             foreach ($all_comments as $comment) {
                 // if ((int)$comment['approved'] !== 2) {
                 //     array_push($comments, $comment);
                 // }
-                if ((int)$comment['approved'] !== 2 && (int)$comment['answer'] === 0) {
+                if (isset($comment['approved']) && (int)$comment['approved'] !== 2 && (int)$comment['answer'] === 0) {
                     array_push($comments, $comment);
                 }
-                if ((int)$comment['approved'] !== 2 && (int)$comment['answer'] !== 0) {
+                if (isset($comment['approved']) && (int)$comment['approved'] !== 2 && (int)$comment['answer'] !== 0) {
                     array_push($comments_answer, $comment);
                 }
             }
@@ -723,16 +723,18 @@ class BetterCommentsPlugin extends Plugin
 
         foreach ($files as $file) {
             $file_comments = [];
-            foreach ($file->data['comments'] as $comment) {
-                if ((int)$comment['approved'] !== 2) {
-                    array_push($file_comments, $comment);
+            if (count($file->data['comments']) > 0) {
+                foreach ($file->data['comments'] as $comment) {
+                    if (isset($comment['approved']) && (int)$comment['approved'] !== 2) {
+                        array_push($file_comments, $comment);
+                    }
                 }
+                $pages[] = [
+                    'title' => $file->data['title'],
+                    'commentsCount' => count($file_comments),
+                    'lastCommentDate' => date('D, d M Y H:i:s', $file->modifiedDate)
+                ];
             }
-            $pages[] = [
-                'title' => $file->data['title'],
-                'commentsCount' => count($file_comments),
-                'lastCommentDate' => date('D, d M Y H:i:s', $file->modifiedDate)
-            ];
         }
 
         return $pages;

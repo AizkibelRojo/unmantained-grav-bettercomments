@@ -8,9 +8,9 @@
 					{% if comment.approved == "1" %}
 						<li class="comment">
 							<div class="comment-author">
-								<img src="https://secure.gravatar.com/avatar/ca28b52f61369fa8c79a2ec452c51dad?s=32&d=mm&r=g"/>
+								<img src="https://secure.gravatar.com/avatar/ca28b52f61369fa8c79a2ec452c51dad?s=32&d=mm&r=g" style="max-height:1rem"/>
 								<span class="comment-author-name">{{comment.author}}</span>
-								{{'PLUGIN_COMMENTS.SAYS'|t}}:
+								{{'PLUGIN_COMMENTS.SAYS'|t}} : 
 							</div>
 							<span class="comment-date">
 								{{comment.date | date("d/m/Y H:i")}}
@@ -48,7 +48,7 @@
 		<div id="comment-success" class="success">
 			{{'PLUGIN_COMMENTS.THANK_YOU_MESSAGE'|t}}
 		</div>
-		<form name="{{ grav.config.plugins.bettercomments.form.name }}" action="{{ grav.config.plugins.bettercomments.form.action ? base_url ~ grav.config.plugins.bettercomments.form.action : page.url }}" method="{{ grav.config.plugins.bettercomments.form.method|upper|default('POST') }}" id="comments-form">
+		<form name="{{ grav.config.plugins.bettercomments.form.name }}" action="{{ grav.config.plugins.bettercomments.form.action ? base_url ~ grav.config.plugins.bettercomments.form.action : page.url }}" method="{{ grav.config.plugins.bettercomments.form.method|upper|default('POST') }}" id="comments-form" class="contact-form">
 
 			{% for field in grav.config.plugins.bettercomments.form.fields %}
 				{% set value = form.value(field.name) %}

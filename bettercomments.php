@@ -543,8 +543,7 @@ class BetterCommentsPlugin extends Plugin
                 'onDataTypeExcludeFromDataManagerPluginHook' => ['onDataTypeExcludeFromDataManagerPluginHook', 0],
                 'onPageInitialized' => ['onPageInitialized', 0],
             ]);
-        }
-        else{
+        } else {
             $this->enable([
                 'onTwigTemplatePaths' => ['onTwigAdminTemplatePaths', 0],
                 'onAdminMenu' => ['onAdminMenu', 0],
@@ -645,12 +644,14 @@ class BetterCommentsPlugin extends Plugin
                 $data['comments'][$i]['filePath'] = $file->filePath;
                 $data['comments'][$i]['timestamp'] = $data['comments'][$i]['date'];
             }
-            //Filter "Deleted" comments
-            $data['comments'] = array_filter($data['comments'], function ($k) {
-                return $k['approved'] == '1' || $k['approved'] == '0';
-            });
-            if (count($data['comments'])) {
-                $comments = array_merge($comments, $data['comments']);
+            if (count($data['comments']) > 0) {
+                //Filter "Deleted" comments
+                $data['comments'] = array_filter($data['comments'], function ($k) {
+                    return $k['approved'] == '1' || $k['approved'] == '0';
+                });
+                if (count($data['comments']) > 0) {
+                    $comments = array_merge($comments, $data['comments']);
+                }
             }
         }
 

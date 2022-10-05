@@ -1,3 +1,7 @@
+# v1.0.7
+## 10/05/2022
+- array_filter error solved, if is 0 not array filter done
+
 # v1.0.6
 ## 10/03/2022
 -  Admin pages section content not seeing [Bug fix]

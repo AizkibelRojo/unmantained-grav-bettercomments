@@ -723,16 +723,18 @@ class BetterCommentsPlugin extends Plugin
 
         foreach ($files as $file) {
             $file_comments = [];
-            foreach ($file->data['comments'] as $comment) {
-                if ((int)$comment['approved'] !== 2) {
-                    array_push($file_comments, $comment);
+            if (count($file->data['comments']) > 0) {
+                foreach ($file->data['comments'] as $comment) {
+                    if ((int)$comment['approved'] !== 2) {
+                        array_push($file_comments, $comment);
+                    }
                 }
+                $pages[] = [
+                    'title' => $file->data['title'],
+                    'commentsCount' => count($file_comments),
+                    'lastCommentDate' => date('D, d M Y H:i:s', $file->modifiedDate)
+                ];
             }
-            $pages[] = [
-                'title' => $file->data['title'],
-                'commentsCount' => count($file_comments),
-                'lastCommentDate' => date('D, d M Y H:i:s', $file->modifiedDate)
-            ];
         }
 
         return $pages;

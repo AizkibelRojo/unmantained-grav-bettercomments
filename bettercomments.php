@@ -698,10 +698,10 @@ class BetterCommentsPlugin extends Plugin
                 // if ((int)$comment['approved'] !== 2) {
                 //     array_push($comments, $comment);
                 // }
-                if ((int)$comment['approved'] !== 2 && (int)$comment['answer'] === 0) {
+                if (isset($comment['approved']) && (int)$comment['approved'] !== 2 && (int)$comment['answer'] === 0) {
                     array_push($comments, $comment);
                 }
-                if ((int)$comment['approved'] !== 2 && (int)$comment['answer'] !== 0) {
+                if (isset($comment['approved']) && (int)$comment['approved'] !== 2 && (int)$comment['answer'] !== 0) {
                     array_push($comments_answer, $comment);
                 }
             }

@@ -1,3 +1,6 @@
+# v1.0.8
+## 10/05/2022
+- array_filter bugfix, thanks to spin0us for time spend on plugin and code fix (https://github.com/spin0us)
 # v1.0.7
 ## 10/05/2022
 - array_filter error solved, if is 0 not array filter done

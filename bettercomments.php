@@ -689,7 +689,7 @@ class BetterCommentsPlugin extends Plugin
         $filename .= $this->grav['uri']->path() . '.yaml';
 
         $data = $this->getDataFromFilename($filename);
-        $all_comments = isset($data['comments']) ? $data['comments'] : null;
+        $all_comments = isset($data['comments']) ? $data['comments'] : [];
         $comments = [];
         $comments_answer = array();
 

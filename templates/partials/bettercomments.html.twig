@@ -10,13 +10,13 @@
 							<div class="comment-author">
 								<img src="https://secure.gravatar.com/avatar/ca28b52f61369fa8c79a2ec452c51dad?s=32&d=mm&r=g" style="max-height:1rem"/>
 								<span class="comment-author-name">{{comment.author}}</span>
-								{{'PLUGIN_COMMENTS.SAYS'|t}} : 
+								{{'PLUGIN_COMMENTS.SAYS'|t}} :
 							</div>
 							<span class="comment-date">
 								{{comment.date | date("d/m/Y H:i")}}
 							</span>
 							<br/>
-							{{comment.text}}
+							{{comment.text | raw}}
 							<br/>
 						</li>
 						{% for answer in answers|array_reverse %}
@@ -32,7 +32,7 @@
 											{{answer.date | date("d/m/Y H:i")}}
 										</span>
 										<br/>
-										{{answer.text}}
+										{{answer.text | raw}}
 										<br/>
 									</li>
 								</ul>

@@ -349,7 +349,7 @@ class BetterCommentsPlugin extends Plugin
         }
         $time = time();
 
-        $this->addComment($input['name'], $input['email'], $input['text'], $input['answer'], $input['title'], $input['lang'], $time, $input['path']);
+        $this->addComment($input['name'], $input['email'], nl2br($input['text']), $input['answer'], $input['title'], $input['lang'], $time, $input['path']);
 
         $comment_data = [];
         $texts = [];

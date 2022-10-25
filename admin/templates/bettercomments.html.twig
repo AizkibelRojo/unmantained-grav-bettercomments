@@ -64,7 +64,7 @@
 							</td>
 							<td class="author">{{comment.author}}</td>
 							<td class="email">{{comment.email}}</td>
-							<td class="comment">{{comment.text}}</td>
+							<td class="comment">{{comment.text | raw}}</td>
 							<td class="details">
 								<strong>{{ "PLUGIN_COMMENTS.PAGE"|tu }}</strong>:
 								{{comment.pageTitle | raw }}<br>

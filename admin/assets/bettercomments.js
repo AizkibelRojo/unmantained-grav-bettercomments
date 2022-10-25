@@ -2,7 +2,7 @@ $(document).on('click tap', '.individual_comment .approve-comment, .individual_c
     const action = $(this).attr('class'),
         file = $(this).parent('td').data('file'),
         commenttId = $(this).parent('td').data('id'),
-        url = '/admin/bettercomments',
+        url = window.location.pathname,
         posting = $.post(url, { action: action, yaml: file, id: commenttId }, null, 'json')
 
     let blockChange = '',
@@ -74,7 +74,7 @@ $(document).on('click tap', '.comment-response-close', function (event) {
 $(document).on('submit', '#comments-form', function (event) {
     event.preventDefault()
     const data = $(this).serialize(),
-        url = '/admin/bettercomments',
+        url = window.location.pathname,
         posting = $.post(url, data, null, 'json')
 
     posting.done(function (response) {

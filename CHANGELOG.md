@@ -1,3 +1,10 @@
+# v1.0.10
+## 10/25/2022
+
+1. [](#bugfix)
+    * Fixed admin when grav installed on directory (https://github.com/AizkibelRojo/grav-bettercomments/issues/15)
+    * Fixed (https://github.com/AizkibelRojo/grav-bettercomments/issues/16)
+
 # v1.0.9
 ## 10/06/2022
 

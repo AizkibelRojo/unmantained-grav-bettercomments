@@ -1,3 +1,5 @@
+Unmaintained - do not use
+
 # Grav Better comments Plugin
 
 The **Better comments Plugin** for [Grav](http://github.com/getgrav/grav) adds the ability to add, manage and answer comments on Grav CMS, it my own version of **Comments Plugin** from this [link](https://github.com/getgrav/grav-plugin-comments)
